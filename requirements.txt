@@ -1,0 +1,13 @@
+g2p-en==2.1.0
+inflect==5.3.0
+librosa==0.8.1
+omegaconf==2.0.0
+unidecode==1.1.1
+torch==1.4.0
+tensorboard==2.2.0
+pytorch_lightning==1.0.3
+pyyaml==5.3.1
+soundfile==0.10.3.post1
+matplotlib==3.3.1
+pysptk==0.1.18
+xpinyin==0.5.7

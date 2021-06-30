@@ -1,0 +1,3 @@
+[submodule "hifi-gan"]
+	path = hifi-gan
+	url = https://github.com/wookladin/hifi-gan.git

@@ -1,0 +1,62 @@
+data:
+  lang: 'cmu' # 'eng' to use english grapheme, 'cmu' to use unstressed arpabet(phoneme), 'kor' to use korean grapheme
+  text_cleaners: ['english_cleaners'] # korean_cleaners, english_cleaners, chinese_cleaners
+  speakers: ['',]
+  train_dir: '' # root directory of trainset
+  train_meta: ''  # relative path of metadata file from train_dir
+  val_dir: '' # root directory of valset
+  val_meta: ''  # relative path of metadata file from val_dir
+  f0s_list_path: '' # preprocessed f0 list
+###########################
+train:
+  use_attn_loss: True
+###########################
+audio:  # WARNING: this can't be changed.
+  n_mel_channels: 80
+  filter_length: 1024
+  hop_length: 256
+  win_length: 1024
+  sampling_rate: 22050
+  mel_fmin: 0.0
+  mel_fmax: 8000.0
+  f0_min: 50
+  f0_max: 880
+  harm_thresh: 0.25
+###########################
+chn:
+  # text encoder
+  encoder: 512
+  # speaker encoder
+  speaker:
+    cnn: [32, 32, 64, 64, 128, 128]
+    token: 256
+  # residual encoder
+  residual: [32, 32, 64, 64, 128, 128]
+  residual_out: 1
+  # f0 encoder
+  prenet_f0: 1
+  # TTS decoder
+  prenet: 256
+  postnet: 512
+  attention_rnn: 512
+  attention: 128
+  decoder_rnn: 512
+  static: 8
+  dynamic: 8
+###########################
+ker:
+  encoder: 5
+  ### DCA ###
+  static: 21
+  dynamic: 21
+  causal: 11
+  alpha: 0.1
+  beta: 0.9
+  ###########
+  postnet: 5
+  prenet_f0: 1
+###########################
+depth:
+  encoder: 3
+  prenet: 2
+  postnet: 5
