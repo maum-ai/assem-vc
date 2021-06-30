@@ -1,0 +1,16 @@
+train:
+  dropout: 0.5
+  num_workers: 16
+  batch_size: 128
+  adam:
+    lr: 0.0003
+    weight_decay: 0.000001
+  cotatron_path: ''  # path of pretrained cotatron model for VC training
+###########################
+log:
+  chkpt_dir: 'chkpt/vc'
+  log_dir: 'logs/vc'
+###########################
+chn:
+  # VC decoder
+  gblock: [512, 384, 256, 192]
