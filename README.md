@@ -24,6 +24,12 @@ This repository was tested with following environment:
 - [PyTorch Lightning](https://github.com/PytorchLightning/pytorch-lightning) 1.0.3
 - The requirements are highlighted in [requirements.txt](./requirements.txt).
 
+## Clone our Repository
+```bash
+git clone --recursive https://github.com/mindslab-ai/assem-vc
+cd assem-vc
+```
+
 ## Datasets
 
 ### Preparing Data
@@ -57,11 +63,6 @@ python datasets/g2p.py -i <input_metadata_filename_with_graphemes> -o <output_fi
 ### Preparing Configuration Files
 
 Training our VC system is consisted of two steps: (1) training Cotatron, (2) training VC decoder on top of Cotatron.
-
-```bash
-git clone --recursive https://github.com/mindslab-ai/assem-vc
-cd assem-vc
-```
 
 There are three `yaml` files in the `config` folder, which are configuration template for each model.
 They **must** be edited to match your training requirements (dataset, metadata, etc.).
