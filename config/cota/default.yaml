@@ -11,7 +11,7 @@ train:
     end: 50000
   grad_clip: 1.0  # 0 for no gradient clipping
   teacher_force:
-    rate: 1.0
+    rate: 0.5
 ###########################
 log:
   chkpt_dir: 'chkpt/cota'
