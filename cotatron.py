@@ -13,7 +13,7 @@ from omegaconf import OmegaConf
 from modules import TextEncoder, TTSDecoder, SpeakerEncoder, SpkClassifier
 from datasets import TextMelDataset, text_mel_collate
 from datasets.text import Language
-from utils.alignment_loss import GuidedAttentionLoss
+from modules.alignment_loss import GuidedAttentionLoss
 
 
 class Cotatron(pl.LightningModule):
@@ -35,7 +35,10 @@ class Cotatron(pl.LightningModule):
         self.is_val_first = True
 
         self.use_attn_loss = hp.train.use_attn_loss
-        self.attn_loss = GuidedAttentionLoss(20000, 0.25, 1.00025)
+        if self.use_attn_loss:
+            self.attn_loss = GuidedAttentionLoss(20000, 0.25, 1.00025)
+        else:
+            self.attn_loss = None
 
     def forward(self, text, mel_target, speakers, input_lengths, output_lengths, max_input_len,
                 prenet_dropout=0.5, no_mask=False, tfrate=True):
@@ -59,7 +62,7 @@ class Cotatron(pl.LightningModule):
         decoder_input = torch.cat((text_encoding, speaker_emb_rep), dim=2)
         _, mel_postnet, alignment = \
             self.decoder(mel_target, decoder_input, in_len, out_len, in_len,
-                         prenet_dropout=0.0, no_mask=True, tfrate=False)
+                         prenet_dropout=0.5, no_mask=True, tfrate=False)
         return mel_postnet, alignment
 
     def training_step(self, batch, batch_idx):
@@ -85,7 +88,7 @@ class Cotatron(pl.LightningModule):
         text, mel_target, speakers, input_lengths, output_lengths, max_input_len, _ = batch
         speaker_emb, mel_pred, mel_postnet, alignment = \
             self.forward(text, mel_target, speakers, input_lengths, output_lengths, max_input_len,
-                         prenet_dropout=0.0, tfrate=False)
+                         prenet_dropout=0.5, tfrate=False)
         speaker_prob = self.classifier(speaker_emb)
         classifier_loss = F.nll_loss(speaker_prob, speakers)
 
