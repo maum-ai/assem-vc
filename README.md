@@ -3,16 +3,15 @@
 ![](./docs/images/overall.png)
 
 **Assem-VC: Realistic Voice Conversion by Assembling Modern Speech Synthesis Techniques**<br>
-Kang-wook Kim, Seung-won Park, Myun-chul Joe @ [MINDsLab Inc.](https://mindslab.ai), SNU
+Kang-wook Kim, Seung-won Park, Myun-chul Joe @ [MINDsLab Inc.](https://maum.ai/), SNU
 
 Paper: https://arxiv.org/abs/2104.00931 <br>
 Audio Samples: https://mindslab-ai.github.io/assem-vc/ <br>
 
 Abstract: *In this paper, we pose the current state-of-the-art voice conversion (VC) systems as two-encoder-one-decoder models. After comparing these models, we combine the best features and propose Assem-VC, a new state-of-the-art any-to-many non-parallel VC system. This paper also introduces the GTA finetuning in VC, which significantly improves the quality and the speaker similarity of the outputs. Assem-VC outperforms the previous state-of-the-art approaches in both the naturalness and the speaker similarity on the VCTK dataset. As an objective result, the degree of speaker disentanglement of features such as phonetic posteriorgrams (PPG) is also explored. Our investigation indicates that many-to-many VC results are no longer distinct from human speech and similar quality can be achieved with any-to-many models.*
 
-## TODO List (2021.07.01)
-- [ ] Enable GTA finetuning
-- [ ] Upload loss curves
+## TODO List (2021.07.03)
+- [x] Enable GTA finetuning
 - [ ] Upload pre-trained weight
 
 ## Requirements
@@ -37,8 +36,14 @@ cd assem-vc
 - To reproduce the results from our paper, you need to download:
   - LibriTTS train-clean-100 split [tar.gz link](http://www.openslr.org/resources/60/train-clean-100.tar.gz)
   - [VCTK dataset (Version 0.80)](https://datashare.ed.ac.uk/handle/10283/2651)
-- Unzip each files.
+- Unzip each files, and clone them in `datasets/`.
 - Resample them into 22.05kHz using `datasets/resample.py`.
+  ```bash
+  python datasets/resample.py
+  ```
+  Note that `dataset/resample.py` was hard-coded to remove original wavfiles in `datasets/` and replace them into resampled wavfiles,
+  and their filename will be the same as the original filename.
+
 
 ### Preparing Metadata
 
@@ -76,11 +81,13 @@ cp config/vc/default.yaml config/vc/config.yaml
 Here, all files with name other than `default.yaml` will be ignored from git (see `.gitignore`).
 
 - `config/global`: Global configs that are both used for training Cotatron & VC decoder.
-  - Fill in the blanks of: `speakers`, `train_dir`, `train_meta`, `val_dir`, `val_meta`.
+  - Fill in the blanks of: `speakers`, `train_dir`, `train_meta`, `val_dir`, `val_meta`, `f0s_list_path`.
   - Example of speaker id list is shown in `datasets/metadata/libritts_vctk_speaker_list.txt`.
   - When replicating the two-stage training process from our paper (training with LibriTTS and then LibriTTS+VCTK), please put both list of speaker ids from LibriTTS and VCTK at global config.
+  - `f0s_list_path` is set to `f0s.txt` by default
 - `config/cota`: Configs for training Cotatron.
   - You may want to change: `batch_size` for GPUs other than 32GB V100, or change `chkpt_dir` to save checkpoints in other disk.
+  - You can also modify `use_attn_loss`, whether guided attention loss is used or not.
 - `config/vc`: Configs for training VC decoder.
   - Fill in the blank of: `cotatron_path`. 
 
@@ -128,7 +135,22 @@ The optional checkpoint argument is also available for VC decoder.
 
 ### 3. GTA finetuning HiFi-GAN
 
-TBD
+Once the VC decoder is trained, finetune the HiFi-GAN with GTA finetuning.
+First, you should extract GTA mel-spectrograms from VC decoder.
+```bash
+python gta_extractor.py -c <path_to_global_config_yaml> <path_to_vc_config_yaml> \
+                        -p <checkpoint_path>
+```
+The GTA mel-spectrograms calculated from audio file will be saved as `**.wav.gta` at first, 
+and then loaded from disk afterwards.
+
+Train/validation metadata of GTA mels will be saved in `datasets/gta_metadata/gta_<orignal_metadata_name>.txt`.
+You should use those metadata when finetuning HiFi-GAN.
+
+After extracting GTA mels, get into hifi-gan and follow manuals in [hifi-gan/README.md](https://github.com/wookladin/hifi-gan/blob/master/README.md)
+```bash
+cd hifi-gan
+```
 
 ### Monitoring via Tensorboard
 
@@ -152,7 +174,7 @@ You can convert it to speaker contained in trainset: which is any-to-many voice 
     Note that speaker_id has no effect whether or not it is in the training set.
 3. Convert `datasets/inference_source/metadata_origin.txt` into ARPABET.
     ```bash
-    python3 datasets/g2p.py -i datasets/inference_source/metadata_origin.txt \
+    python datasets/g2p.py -i datasets/inference_source/metadata_origin.txt \
                             -o datasets/inference_source/metadata_g2p.txt
     ```
 4. Run [inference.ipynb](./inference.ipynb)
@@ -168,11 +190,10 @@ Hence, the quality of the result may differ from the paper.*
 
 Here are some noteworthy details of implementation, which could not be included in our paper due to the lack of space:
 
-- Guided attention loss
-
-We applied guided attention loss proposed in [DC-TTS](https://arxiv.org/abs/1710.08969).
-It helped Cotatron's alignment learning stable and faster convergence.
-See [utils/alignment_loss.py](./utils/alignment_loss.py).
+- Guided attention loss <br>
+  We applied guided attention loss proposed in [DC-TTS](https://arxiv.org/abs/1710.08969).
+  It helped Cotatron's alignment learning stable and faster convergence.
+  See [modules/alignment_loss.py](./modules/alignment_loss.py).
 
 ## License
 
@@ -193,8 +214,61 @@ If you have a question or any kind of inquiries, please contact Kang-wook Kim at
 
 
 ## Repository structure
-
-TBD
+```
+.
+├── LICENSE
+├── README.md
+├── cotatron.py
+├── cotatron_trainer.py         # Trainer file for Cotatron
+├── gta_extractor.py            # GTA mel spectrogram extractor
+├── inference.ipynb
+├── preprocess.py               # Extracting speakers' pitch range
+├── requirements.txt
+├── synthesizer.py
+├── synthesizer_trainer.py      # Trainer file for VC decoder (named as "synthesizer")
+├── config
+│   ├── cota
+│   │   └── default.yaml        # configuration template for Cotatron
+│   ├── global
+│   │   └── default.yaml        # configuration template for both Cotatron and VC decoder
+│   └── vc
+│        └── default.yaml       # configuration template for VC decoder
+├── datasets                    # TextMelDataset and text preprocessor
+│   ├── __init__.py         
+│   ├── g2p.py                  # Using G2P to convert metadata's transcription into ARPABET
+│   ├── resample.py             # Python file for audio resampling
+│   └── text_mel_dataset.py
+│   ├── inference_source
+│   │    (omitted)              # custom source speechs and transcriptions for inference.ipynb
+│   ├── metadata
+│   │    (ommited)              # Refer to README.md within the folder.
+│   └── text
+│        ├── __init__.py
+│        ├── cleaners.py
+│        ├── cmudict.py
+│        ├── numbers.py
+│        └── symbols.py
+├── docs                        # Audio samples and code for https://mindslab-ai.github.io/assem-vc/
+│   (omitted)
+├── hifi-gan                    # Modified HiFi-GAN vocoder (https://github.com/wookladin/hifi-gan)
+│   (omitted)
+├── modules                     # All modules that compose model, including mel.py
+│   ├── __init__.py
+│   ├── alignment_loss.py       # Guided attention loss
+│   ├── attention.py            # Implementation of DCA (https://arxiv.org/abs/1910.10288)
+│   ├── classifier.py
+│   ├── cond_bn.py
+│   ├── encoder.py
+│   ├── f0_encoder.py
+│   ├── mel.py                  # Code for calculating mel-spectrogram from raw audio
+│   ├── tts_decoder.py
+│   ├── vc_decoder.py
+│   └── zoneout.py              # Zoneout LSTM
+└── utils                       # Misc. code snippets, usually for logging
+    ├── loggers.py
+    ├── plotting.py
+    └── utils.py
+```
 
 ## References
 
@@ -210,7 +284,7 @@ This implementation uses code from following repositories:
 This README was inspired by:
 - [Tips for Publishing Research Code](https://github.com/paperswithcode/releasing-research-code)
 
-The audio samples on our [webpage](https://mindslab-ai.github.io/cotatron/) are partially derived from:
+The audio samples on our [webpage](https://mindslab-ai.github.io/assem-vc/) are partially derived from:
 - [LibriTTS](https://arxiv.org/abs/1904.02882): Dataset for multispeaker TTS, derived from LibriSpeech.
-- [VCTK](https://homepages.inf.ed.ac.uk/jyamagis/page3/page58/page58.html): 46 hours of English speech from 108 speakers.
+- [VCTK](https://datashare.ed.ac.uk/handle/10283/2651): 46 hours of English speech from 108 speakers.
 - [KSS](https://www.kaggle.com/bryanpark/korean-single-speaker-speech-dataset): Korean Single Speaker Speech Dataset.
