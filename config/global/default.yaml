@@ -8,9 +8,6 @@ data:
   val_meta: ''  # relative path of metadata file from val_dir
   f0s_list_path: '' # preprocessed f0 list
 ###########################
-train:
-  use_attn_loss: True
-###########################
 audio:  # WARNING: this can't be changed.
   n_mel_channels: 80
   filter_length: 1024
@@ -30,9 +27,6 @@ chn:
   speaker:
     cnn: [32, 32, 64, 64, 128, 128]
     token: 256
-  # residual encoder
-  residual: [32, 32, 64, 64, 128, 128]
-  residual_out: 1
   # f0 encoder
   prenet_f0: 1
   # TTS decoder
