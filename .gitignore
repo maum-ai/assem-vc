@@ -8,6 +8,9 @@ config/*/*.yaml
 # f0 information
 f0s.txt
 
+# GTA metadatas
+datasets/gta_metadata/
+
 # logs, checkpoints
 chkpt/
 logs/
