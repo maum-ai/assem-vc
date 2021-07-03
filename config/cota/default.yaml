@@ -11,7 +11,8 @@ train:
     end: 50000
   grad_clip: 1.0  # 0 for no gradient clipping
   teacher_force:
-    rate: 0.5
+    rate: 0.5 # 0.5 is the most stable value
+  use_attn_loss: True # Using guided attention loss (See README.md)
 ###########################
 log:
   chkpt_dir: 'chkpt/cota'

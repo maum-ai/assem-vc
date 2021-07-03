@@ -73,7 +73,7 @@ class Synthesizer(pl.LightningModule):
         decoder_input = torch.cat((text_encoding, z_s_repeated), dim=2)
         _, _, alignment = \
             self.cotatron.decoder(mel_source, decoder_input, in_len, out_len, in_len,
-                                  prenet_dropout=0.0, no_mask=True, tfrate=False)
+                                  prenet_dropout=0.5, no_mask=True, tfrate=False)
         ling_s = torch.bmm(alignment, text_encoding)
         ling_s = ling_s.transpose(1, 2)
 
@@ -95,7 +95,7 @@ class Synthesizer(pl.LightningModule):
         decoder_input = torch.cat((text_encoding, z_s_repeated), dim=2)
         _, _, alignment = \
             self.cotatron.decoder(mel_source, decoder_input, in_len, out_len, in_len,
-                                  prenet_dropout=0.0, no_mask=True, tfrate=False)
+                                  prenet_dropout=0.5, no_mask=True, tfrate=False)
         ling_s = torch.bmm(alignment, text_encoding)
         ling_s = ling_s.transpose(1, 2)
 
@@ -147,7 +147,7 @@ class Synthesizer(pl.LightningModule):
 
         if self.is_val_first:
             self.is_val_first = False
-            self.logger.log_figures(mel_source, mel_s_s, mel_s_t, alignment, residual, self.global_step)
+            self.logger.log_figures(mel_source, mel_s_s, mel_s_t, alignment, f0_padded, self.global_step)
 
         return {'loss_rec': loss_rec}
 

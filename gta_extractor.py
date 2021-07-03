@@ -65,11 +65,10 @@ class GtaExtractor(object):
             temp_meta = self.extract_gta_mels(batch, mode)
             meta_list.extend(temp_meta)
 
-        root_dir = self.hp.data.train_dir if mode == 'train' else self.hp.data.val_dir
         meta_path = self.hp.data.train_meta if mode == 'train' else self.hp.data.val_meta
         meta_filename = os.path.basename(meta_path)
         new_meta_filename = 'gta_' + meta_filename
-        new_meta_path = os.path.join(root_dir, META_DIR, new_meta_filename)
+        new_meta_path = os.path.join('datasets', META_DIR, new_meta_filename)
 
         os.makedirs(os.path.join('datasets', META_DIR), exist_ok=True)
         with open(new_meta_path, 'w', encoding='utf-8') as f:

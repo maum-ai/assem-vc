@@ -93,7 +93,6 @@ def plot_residual(residual):
     for feat in residual:
         plt.plot(range(len(feat)), feat)
     plt.xlim(0, len(residual[0]))
-    #plt.ylim(-1.0, 1.0)
     plt.xlabel('time frames')
     plt.ylabel('residual info')
     plt.subplots_adjust(bottom=0.1, right=0.88, top=0.9)
