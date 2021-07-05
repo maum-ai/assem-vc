@@ -42,7 +42,8 @@ cd assem-vc
   python datasets/resample.py
   ```
   Note that `dataset/resample.py` was hard-coded to remove original wavfiles in `datasets/` and replace them into resampled wavfiles,
-  and their filename will be the same as the original filename.
+  and their filename `*.wav` will be transformed into `*-22k.wav`.
+- You can use `datasets/resample_delete.sh` instead of `datasets/resample.py`. It does the same role.
 
 
 ### Preparing Metadata
