@@ -6,10 +6,9 @@ from multiprocessing import Pool, freeze_support
 from argparse import ArgumentParser
 
 def resampling(wavdir, sr):
-    newdir = wavdir.replace('.wav', '-tmp.wav')
+    newdir = wavdir.replace('.wav', '-22k.wav')
     os.system('ffmpeg -hide_banner -loglevel panic -y -i %s -ar %d %s' % (wavdir, sr, newdir))
-    os.system('rm %s' % wavdir)
-    os.system('mv %s %s' % (newdir,wavdir))
+    os.system('rm %s'% wavdir)
 
 if __name__ == '__main__':
 
