@@ -52,7 +52,7 @@ class Synthesizer(pl.LightningModule):
         decoder_input = torch.cat((text_encoding, z_s_repeated), dim=2)
         _, _, alignment = \
             self.cotatron.decoder(mel_source, decoder_input, input_lengths, output_lengths, max_input_len,
-                                  prenet_dropout=0.0, tfrate=False)
+                                  prenet_dropout=0.5, tfrate=False)
 
         # alignment: [B, T_dec, T_enc]
         # text_encoding: [B, T_enc, chn.encoder]
