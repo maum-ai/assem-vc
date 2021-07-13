@@ -28,6 +28,7 @@ chn:
     cnn: [32, 32, 64, 64, 128, 128]
     token: 256
   # f0 encoder
+  residual_out: 1
   prenet_f0: 1
   # TTS decoder
   prenet: 256
