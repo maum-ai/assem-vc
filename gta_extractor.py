@@ -136,8 +136,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config', nargs=2, type=str, required=True,
                         help="path of configuration yaml file")
-    parser.add_argument('-g', '--gpus', type=str, default=None,
-                        help="gpu device number")
     parser.add_argument('-p', '--checkpoint_path', type=str, default=None,
                         help="path of checkpoint to use for extracting GTA mel")
     parser.add_argument('-m', '--min_mel_length', type=int, default=33,
