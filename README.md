@@ -12,7 +12,7 @@ Abstract: *In this paper, we pose the current state-of-the-art voice conversion 
 
 ## TODO List (2021.07.03)
 - [x] Enable GTA finetuning
-- [ ] Upload pre-trained weight
+- [x] Upload pre-trained weight
 
 ## Requirements
 
@@ -102,9 +102,9 @@ python preprocess.py -c <path_to_global_config_yaml>
 Result will be saved at `f0s.txt`.
 
 ## Training
-
+Currently, the training speed via multi-GPU setting may be slow due to the version issue of pytorch lightning.
+If you want to train faster, see [this issue](https://github.com/mindslab-ai/assem-vc/issues/13).
 ### 1. Training Cotatron
-
 To train the Cotatron, run this command:
 
 ```bash
@@ -163,6 +163,16 @@ tensorboard --log_dir logs/cota --bind_all # Cotatron - Scalars, Images, Hparams
 tensorboard --log_dir logs/vc --bind_all # VC decoder - Scalars, Images, Hparams will be shown.
 ```
 
+## Pre-trained Weight
+We provide pretrained model of Assem-VC and GTA-finetuned HiFi-GAN generator weight.
+Assem-VC was trained with VCTK and LibriTTS, and HiFi-GAN was finetuned with VCTK.
+
+1. Download our published [models and configurations](https://drive.google.com/drive/folders/1aIl8ObHxsmsFLXBz-y05jMBN4LrpQejm?usp=sharing).
+2. Place `global/config.yaml` at `config/global/config.yaml`, and `vc/config.yaml` at `config/vc/config.yaml`
+3. Download `f0s.txt` and write the relative path of it at `hp.data.f0s_list_path`.
+(Default path is `f0s.txt`)
+4. write path of pretrained Assem-VC and HiFi-GAN models in [inference.ipynb](./inference.ipynb).
+
 ## Inference
 
 After the VC decoder and HiFi-GAN are trained, you can use an arbitrary speaker's speech as the source.
@@ -179,6 +189,10 @@ You can convert it to speaker contained in trainset: which is any-to-many voice 
                             -o datasets/inference_source/metadata_g2p.txt
     ```
 4. Run [inference.ipynb](./inference.ipynb)
+
+We provide three samples including single TTS sample from [VITS demo page](https://jaywalnut310.github.io/vits-demo/index.html) for source audio.
+
+**Note that source speech should be clean and the volume should not be too low.**
 
 ## Results
 
