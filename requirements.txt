@@ -8,6 +8,6 @@ tensorboard==2.2.0
 pytorch_lightning==1.0.3
 pyyaml==5.3.1
 soundfile==0.10.3.post1
-matplotlib==3.3.1
+matplotlib==3.1.3
 pysptk==0.1.18
 xpinyin==0.5.7
