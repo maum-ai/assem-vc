@@ -8,11 +8,9 @@ Kang-wook Kim, Seung-won Park, Myun-chul Joe @ [MINDsLab Inc.](https://maum.ai/)
 Paper: https://arxiv.org/abs/2104.00931 <br>
 Audio Samples: https://mindslab-ai.github.io/assem-vc/ <br>
 
-Abstract: *In this paper, we pose the current state-of-the-art voice conversion (VC) systems as two-encoder-one-decoder models. After comparing these models, we combine the best features and propose Assem-VC, a new state-of-the-art any-to-many non-parallel VC system. This paper also introduces the GTA finetuning in VC, which significantly improves the quality and the speaker similarity of the outputs. Assem-VC outperforms the previous state-of-the-art approaches in both the naturalness and the speaker similarity on the VCTK dataset. As an objective result, the degree of speaker disentanglement of features such as phonetic posteriorgrams (PPG) is also explored. Our investigation indicates that many-to-many VC results are no longer distinct from human speech and similar quality can be achieved with any-to-many models.*
+**Update: Enjoy our pre-trained model with [Google Colab notebook](https://colab.research.google.com/drive/1rj0d2Xfl0s9TmtHSrJt-8J-eVT6eOgS5?usp=sharing)!**
 
-## TODO List (2021.07.03)
-- [x] Enable GTA finetuning
-- [x] Upload pre-trained weight
+Abstract: *In this paper, we pose the current state-of-the-art voice conversion (VC) systems as two-encoder-one-decoder models. After comparing these models, we combine the best features and propose Assem-VC, a new state-of-the-art any-to-many non-parallel VC system. This paper also introduces the GTA finetuning in VC, which significantly improves the quality and the speaker similarity of the outputs. Assem-VC outperforms the previous state-of-the-art approaches in both the naturalness and the speaker similarity on the VCTK dataset. As an objective result, the degree of speaker disentanglement of features such as phonetic posteriorgrams (PPG) is also explored. Our investigation indicates that many-to-many VC results are no longer distinct from human speech and similar quality can be achieved with any-to-many models.*
 
 ## Requirements
 
