@@ -255,6 +255,8 @@ If you have a question or any kind of inquiries, please contact Kang-wook Kim at
 │   └── text_mel_dataset.py
 │   ├── inference_source
 │   │    (omitted)              # custom source speechs and transcriptions for inference.ipynb
+│   ├── inference_target
+│   │    (omitted)              # target speechs and transcriptions of VCTK for inference.ipynb
 │   ├── metadata
 │   │    (ommited)              # Refer to README.md within the folder.
 │   └── text

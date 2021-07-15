@@ -1,0 +1,15 @@
+p225_005-22k.wav|{SH IY} {K AE N} {S K UW P} {DH IY Z} {TH IH NG Z} {IH N T UW} {TH R IY} {R EH D} {B AE G Z} {AH N D} {W IY} {W IH L} {G OW} {M IY T} {HH ER} {W EH N Z D IY} {AE T} {DH AH} {T R EY N} {S T EY SH AH N}|p225
+p226_049-22k.wav|{B AH T} {IH T} {M AY T} {HH AE V} {D AH N}|p226
+p234_009-22k.wav|{DH EH R} {IH Z} {AH K AO R D IH NG} {T UW} {L EH JH AH N D} {AH} {B OY L IH NG} {P AA T} {AH V} {G OW L D} {AE T} {W AH N} {EH N D}|p234
+p237_007-22k.wav|{DH AH} {R EY N B OW} {IH Z} {AH} {D IH V IH ZH AH N} {AH V} {W AY T} {L AY T} {IH N T UW} {M EH N IY} {B Y UW T AH F AH L} {K AH L ER Z}|p237
+p258_120-22k.wav|{DH EH R} {W IH L} {B IY} {N OW} {SH AO R T AH JH} {AH V} {K W AA L AH T IY} {AE P L IH K AH N T S}|p258
+p263_088-22k.wav|{AH} {P L EY} {IH Z} {AH} {S EH T} {AH V} {AE K SH AH N Z}|p263
+p277_034-22k.wav|{W IY} {M AH S T} {P R AH V AY D} {AH} {L AO NG T ER M} {S AH L UW SH AH N} {T UW} {T AE K AH L} {DH IH S} {AE T AH T UW D}|p277
+p286_010-22k.wav|{P IY P AH L} {L UH K} {B AH T} {N OW} {W AH N} {EH V ER} {F AY N D Z} {IH T}|p286
+p300_068-22k.wav|{HH AW} {TH IH NG Z} {HH AE V} {CH EY N JH D} {S IH N S} {DH EH N}|p300
+p306_012-22k.wav|{TH R UW AW T} {DH AH} {S EH N CH ER IY Z} {P IY P AH L} {HH AE V} {IH K S P L EY N D} {DH AH} {R EY N B OW} {IH N} {V EH R IY AH S} {W EY Z}|p306
+p314_036-22k.wav|{B AH T} {SH IY} {W AA Z} {V EH R IY} {HH Y UW M AH N}|p314
+p329_041-22k.wav|{HH IY} {W IH L} {N EH V ER} {W AO K} {DH AH} {S T R IY T S} {AH G EH N}|p329
+p330_048-22k.wav|{IH T} {IH Z} {B AE D} {N UW Z} {F AO R} {DH AH} {F L AH D AH D} {EH R IY AH Z}|p330
+p345_009-22k.wav|{DH EH R} {IH Z} {AH K AO R D IH NG} {T UW} {L EH JH AH N D} {AH} {B OY L IH NG} {P AA T} {AH V} {G OW L D} {AE T} {W AH N} {EH N D}|p345
+p361_026-22k.wav|{DH AE T} {IH Z} {W EH R} {DH AH} {D AE M AH JH} {HH AE Z} {B IH N} {D AH N}|p361
