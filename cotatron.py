@@ -68,7 +68,7 @@ class Cotatron(pl.LightningModule):
     def training_step(self, batch, batch_idx):
         text, mel_target, speakers, input_lengths, output_lengths, max_input_len, _ = batch
         speaker_emb, mel_pred, mel_postnet, alignment = \
-            self.forward(text, mel_target, speakers, input_lengths, output_lengths, max_input_len)
+            self(text, mel_target, speakers, input_lengths, output_lengths, max_input_len)
         speaker_prob = self.classifier(speaker_emb)
         classifier_loss = F.nll_loss(speaker_prob, speakers)
 
@@ -87,7 +87,7 @@ class Cotatron(pl.LightningModule):
     def validation_step(self, batch, batch_idx):
         text, mel_target, speakers, input_lengths, output_lengths, max_input_len, _ = batch
         speaker_emb, mel_pred, mel_postnet, alignment = \
-            self.forward(text, mel_target, speakers, input_lengths, output_lengths, max_input_len,
+            self(text, mel_target, speakers, input_lengths, output_lengths, max_input_len,
                          prenet_dropout=0.5, tfrate=False)
         speaker_prob = self.classifier(speaker_emb)
         classifier_loss = F.nll_loss(speaker_prob, speakers)

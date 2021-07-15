@@ -117,7 +117,7 @@ class Synthesizer(pl.LightningModule):
         text, mel_source, speakers, f0_padded, input_lengths, output_lengths, max_input_len, _ = batch
 
         with torch.no_grad():
-            ling_s, _ = self.forward(text, mel_source, input_lengths, output_lengths, max_input_len)
+            ling_s, _ = self(text, mel_source, input_lengths, output_lengths, max_input_len)
 
         mask = self.get_cnn_mask(output_lengths)
         residual = self.f0_encoder(f0_padded)
@@ -133,7 +133,7 @@ class Synthesizer(pl.LightningModule):
         text, mel_source, speakers, f0_padded, input_lengths, output_lengths, max_input_len, _ = batch
 
         mask = self.get_cnn_mask(output_lengths)
-        ling_s, alignment = self.forward(text, mel_source, input_lengths, output_lengths, max_input_len)
+        ling_s, alignment = self(text, mel_source, input_lengths, output_lengths, max_input_len)
 
         z_s = self.speaker(mel_source, output_lengths)
         rand_batch_idx = np.random.randint(z_s.size(0), size=z_s.size(0))
@@ -153,7 +153,6 @@ class Synthesizer(pl.LightningModule):
 
     def validation_epoch_end(self, outputs):
         loss_rec = torch.stack([x['loss_rec'] for x in outputs]).mean()
-        self.logger.log_loss(loss_rec, mode='val', step=self.global_step, name='rec')
 
         self.is_val_first = True
         self.log('val_loss', loss_rec)
