@@ -6,7 +6,7 @@ unidecode==1.1.1
 torch==1.4.0
 tensorboard==2.2.0
 pytorch_lightning==1.0.3
-pyyaml==5.3.1
+pyyaml==5.4
 soundfile==0.10.3.post1
 matplotlib==3.1.3
 pysptk==0.1.18
