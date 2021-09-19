@@ -6,1022 +6,329 @@
 	<p><b>Paper:</b> <a href="https://arxiv.org/abs/21TBD">arXiv:21TBD</a></p>
     <p><b>Repository:</b> <a href="https://github.com/mindslab-ai/assem-vc">mindslab-ai/assem-vc @ GitHub<iframe src="https://ghbtns.com/github-btn.html?user=mindslab-ai&repo=assem-vc&type=star&count=true" frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe></a>
     <p><strong>Authors: </strong>Kang-wook Kim, Junhyeok Lee @<a href="https://maum.ai">MINDsLab Inc.</a>, SNU</p>
-	<p><strong>Abstract: </strong>In this paper, we pose the current state-of-the-art voice conversion (VC) systems as two-encoder-one-decoder models. After comparing these models, we combine the best features and propose Assem-VC, a new state-of-the-art any-to-many non-parallel VC system. This paper also introduces the GTA finetuning in VC, which significantly improves the quality and the speaker similarity of the outputs. Assem-VC outperforms the previous state-of-the-art approaches in both the naturalness and the speaker similarity on the VCTK dataset. As an objective result, the degree of speaker disentanglement of features such as phonetic posteriorgrams (PPG) is also explored. Our investigation indicates that many-to-many VC results are no longer distinct from human speech and similar quality can be achieved with any-to-many models.</p>
+	<p><strong>Abstract: </strong>We propose a singing decomposition system that encodes time-aligned linguistic content, pitch, and source speaker identity via Assem-VC. With decomposed speaker independent information and target speaker's embedding, we could synthesize singing voice of target speaker.</p>
 <hr>
 
 <p class="toc_title"><strong>Contents</strong></p>
     <div id="toc_container">
     <ol start="0">
       <li><a href="#des">System Description</a></li>
-      <li><a href="#cl">Control Lyric</a></li>
-      <li><a href="#cp">Control Pitch</a></li>
-      <li><a href="#cr">Control Rhythm</a></li>
+      <li><a href="#cl">Controllable Attributes</a></li>
+      <ol>
+        <li><a href="#cl">Lyric Control</a></li>
+        <li><a href="#cp">Pitch Control</a></li>
+        <li><a href="#cr">Rhythm Control</a></li>
+        <li><a href="#cs">Speaker Identity Control</a></li>
+      </ol>
+      <li><a href="#av">Demo with the Author's Singing Voice</a></li>
     </ol>
 	</div>
 
 <hr>
 
 <a name="des"><h2>0. System Description</h2></a>
-<p><strong>Mellotron-VC:</strong> VC System based on <a href="https://arxiv.org/abs/1910.11997">Mellotron</a> which we modify to normalize the pitch to suit the VC task.</p>
-<p><strong>PPG-VC:</strong> Our proposed VC system for comparison between Cotatron and PPG. It uses PPG, Normalized F0, and causal decoder. </p>
-<p><strong>Cotatron-VC:</strong> VC System proposed in <a href="https://arxiv.org/abs/2005.03295">Cotatron paper</a>.</p>
-<p><strong>Assem-VC (Proposed):</strong> Our Proposed VC system using Cotatron, Normalized F0, and causal decoder.</p>
-<p><strong>GTA Finetuning (Proposed methodology):</strong> Finetuning vocoder with the reconstructed mel spectrograms from the acoustic model.</p>
-<p>&nbsp;</p>
+<p> <Strong>Text Content:</Strong> The monkey stopped to scratch his nose.</p>
+
+<table>
+<tbody>
+	<tr>
+	<th>Reference</th>
+	<th>Reconstruction</th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/system/ref.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/system/recon.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+
+        </th>
+	</tr>
+</tbody>
+</table>
+
 <hr>
+<a name="cl"><h2>1. Controllable Attributes</h2></a>
 
-<a name="m2m"><h2>1. Many-to-Many Conversion</h2></a>
-<p><strong>Source speakers:</strong> Randomly selected speech from VCTK test split, which consists of 108 English speakers. All the speakers are <strong>seen</strong> during the training step. </p> </p>
-<p><strong>Target speakers:</strong> Randomly selected speech from VCTK test split, which consists of 108 English speakers. </p>
+<a name="cl"><h3>1.1. Control Lyric</h3></a>
 
-<p>&nbsp;</p>
-<p> <Strong>Text Content:</Strong> "it was an empowering journey" </p>
+<p> <Strong>Text Content:</Strong> The monkey stopped to scratch his nose.</p>
 
 <table>
 <tbody>
 	<tr>
-	<th>Source Speech(p307)</th>
-	<th>Target Speech(p294)</th>
+	<th>Reference</th>
 	</tr>
 	<tr>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/many2many/source/1.wav" type="audio/mpeg">
+				  <source src="./wavs/lyric/ref.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+    
+</tbody>
+</table>
+<h4>1.1.1 Text Edition</h3></a>
+<table>
+<tbody>
+	<tr>
+	<th>The monkey stopped to scratch his <span style="color:red">head</span>&nbsp;</th>
+    <th>The monkey <span style="color:red">tried to describing himself</span>&nbsp;</th>
+    <th><span style="color:red">Eh Eh, Eh Eh, Eh Eh Eh Eh Eh</span></th>
+    <th><span style="color:red">Ow Ow, Ow Ow, Ow Ow Ow Ow Ow</span></th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/lyric/1.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/many2many/target/1.wav" type="audio/mpeg">
+				  <source src="./wavs/lyric/2.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/lyric/3.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/lyric/4.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
 	</tr>
 </tbody>
 </table>
-<p><Strong>Converted Results</Strong></p>
-	  <table>
-	  <tbody><tr>
-        <th>Mellotron-VC w/o GTA</th>
-        <th>PPG-VC w/o GTA</th>
-        <th>Cotatron-VC w/o GTA</th>
-		  <th> Assem-VC w/o GTA </th>
-	  </tr>
-	  <tr>
+                                   
+<h4>1.1.2 Text Deletion</h3></a>
+<table>
+<tbody>
+	<tr>
+        <th>The monkey stopped <span style="color:red"><del>to</del></span> scratch his head &nbsp;</th>
+        <th>The monkey <span style="color:red"><del>stopped</del></span> to <span style="color:red"><del>scratch</del></span> his <span style="color:red"><del>head</del></span>&nbsp;</th>
+	</tr>
+	<tr>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/many2many/mello_gt/1.wav" type="audio/mpeg">
+				  <source src="./wavs/lyric/5.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/many2many/ppg_gt/1.wav" type="audio/mpeg">
+				  <source src="./wavs/lyric/6.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
+	</tr>
+</tbody>
+</table>
+ 
+<a name="cp"><h3>1.2. Control Pitch</h3></a>
+<table>
+<tbody>
+	<tr>
+	<th>Reference</th>
+	</tr>
+	<tr>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/many2many/cota_gt/1.wav" type="audio/mpeg">
+				  <source src="./wavs/pitch/ref.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/proposed_gt/1.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-        <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/mello_gta/1.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/ppg_gta/1.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/cota_gta/1.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/proposed_gta/1.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody></table>
+	</tr>
+    
+</tbody>
+</table>
 
-<p>&nbsp;</p>
-<p><Strong>Text Content:</Strong> "the clarity is vital"</p>
+ 
 <table>
 <tbody>
 	<tr>
-	<th>Source Speech(p232)</th>
-	<th>Target Speech(p275)</th>
+	<th>+1</th>
+    <th>+2</th>
+    <th>+3</th>
 	</tr>
 	<tr>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/many2many/source/2.wav" type="audio/mpeg">
+				  <source src="./wavs/pitch/p1.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/target/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	</tr>
-</tbody>
-</table>
-<p><Strong>Converted Results</Strong></p>
-	  <table>
-	  <tbody><tr>
-        <th>Mellotron-VC w/o GTA</th>
-        <th>PPG-VC w/o GTA</th>
-        <th>Cotatron-VC w/o GTA</th>
-		  <th> Assem-VC w/o GTA </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/mello_gt/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/ppg_gt/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/cota_gt/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/proposed_gt/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-		  <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/mello_gta/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/ppg_gta/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/cota_gta/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/proposed_gta/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody></table>
-<p>&nbsp;</p>
-<p><Strong>Text Content:</Strong> "there may be some resistance"</p>
-<table>
-<tbody>
-	<tr>
-	<th>Source Speech(p340)</th>
-	<th>Target Speech(p304)</th>
-	</tr>
-	<tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/source/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/target/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	</tr>
-</tbody>
-</table>
-<p><Strong>Converted Results</Strong></p>
-	  <table>
-	  <tbody><tr>
-        <th>Mellotron-VC w/o GTA</th>
-        <th>PPG-VC w/o GTA</th>
-        <th>Cotatron-VC w/o GTA</th>
-		  <th> Assem-VC w/o GTA </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/mello_gt/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/ppg_gt/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/cota_gt/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/proposed_gt/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-		  <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/mello_gta/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/ppg_gta/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/cota_gta/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/proposed_gta/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody></table>
 
-<p>&nbsp;</p>
-<p><Strong>Text Content:</Strong> "what do we do ?"</p>
-<table>
-<tbody>
-	<tr>
-	<th>Source Speech(p243)</th>
-	<th>Target Speech(p318)</th>
-	</tr>
-	<tr>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/many2many/source/4.wav" type="audio/mpeg">
+				  <source src="./wavs/pitch/p2.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/target/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	</tr>
-</tbody>
-</table>
-<p><Strong>Converted Results</Strong></p>
-	  <table>
-	  <tbody><tr>
-        <th>Mellotron-VC w/o GTA</th>
-        <th>PPG-VC w/o GTA</th>
-        <th>Cotatron-VC w/o GTA</th>
-		  <th> Assem-VC w/o GTA </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/mello_gt/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/ppg_gt/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/cota_gt/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/proposed_gt/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-		  <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/mello_gta/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/ppg_gta/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/cota_gta/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/proposed_gta/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody></table>
 
-<p>&nbsp;</p>
-<p><Strong>Text Content:</Strong> "england were ahead until two minutes into injury time"</p>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/p3.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+    <th>+4</th>
+    <th>+5</th>
+    <th>+6</th>
+    <tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/p4.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/p5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/p6.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+	<tr>
+	<th>-1</th>
+    <th>-2</th>
+    <th>-3</th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/m1.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/m2.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/m3.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+    <th>-4</th>
+    <th>-5</th>
+    <th>-6</th>
+    <tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/m4.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/m5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/m6.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+
+</tbody>
+</table>
+
+                                  
+
+<a name="cr"><h3>1.3. Control Rhythm</h3></a>
+<p> <Strong>Text Content:</Strong> {IH T S} {F L IY S} {W AA Z} {W AY T} {AE Z} {S N OW}. </p>
+
 <table>
 <tbody>
 	<tr>
-	<th>Source Speech(p280)</th>
-	<th>Target Speech(p364)</th>
+	<th>Reference</th>
+	<th></th>
 	</tr>
 	<tr>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/many2many/source/5.wav" type="audio/mpeg">
+				  <source src="./wavs/rhythm/ref.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
+		<th></th>
+	</tr>
+    <tr>
+        <th>{IH T S} {F L IY S} {W AA Z} <br>
+        {W AY T} {AE Z} {S N <span style="color:red">OW</span>}. <span style="color:red">&times; 1.8</span></th>
+        <th>{IH T S} {F L IY S} {W AA Z} <br>
+        {W AY T} {AE Z} {S N <span style="color:red">OW</span>}. <span style="color:red">&times; 2.5</span></th>
+        <th>{IH T S} {F L IY S} {W AA Z} <br>
+        {W AY T} {AE Z} {<span style="color:red">S</span> N OW}. <span style="color:red">&times; 5.</span></th>
+        <th>{IH T S} {F L IY S} {W AA Z} <br>
+        {W AY T} {<span style="color:red">AE</span> Z} {S N OW}. <span style="color:red">&times; 5.</span></th>
+    </tr>
+    <tr>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/many2many/target/5.wav" type="audio/mpeg">
+				  <source src="./wavs/rhythm/1.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
+        <th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/2.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+        <th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/3.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+        <th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/4.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
 	</tr>
 </tbody>
 </table>
-<p><Strong>Converted Results</Strong></p>
-	  <table>
-	  <tbody><tr>
-        <th>Mellotron-VC w/o GTA</th>
-        <th>PPG-VC w/o GTA</th>
-        <th>Cotatron-VC w/o GTA</th>
-		  <th> Assem-VC w/o GTA </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/mello_gt/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/ppg_gt/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/cota_gt/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/proposed_gt/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-		  <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/mello_gta/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/ppg_gta/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/cota_gta/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/many2many/proposed_gta/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody></table>
-<p>&nbsp;</p>
+<a name="cs"><h3>1.4. Speaker Identity Control</h3></a>
+
 <hr>
-
-<a name="a2m"><h2>2. Any-to-Many Conversion</h2></a>
-<p><strong>Source speakers:</strong> Randomly selected speech from LibriTTS test-clean split. All the speakers are <strong> unseen</strong> during the training step. </p>
-<p><strong>Target speakers:</strong> Randomly selected speech from VCTK test split, which consists of 108 English speakers </p>
-
-<p>&nbsp;</p>
-<p><Strong>Text Content:</Strong> "If the prosecution were withdrawn and the case settled with the victim of the forged check, then the young man would be allowed his freedom. But under the circumstances I doubt if such an arrangement could be made."</p>
-<table>
-<tbody>
-	<tr>
-	<th>Source Speech(6829)</th>
-	<th>Target Speech(p274)</th>
-	</tr>
-	<tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/source/1.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/target/1.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	</tr>
-</tbody>
-</table>
-	  <table>
-	  <tbody>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-        <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/mello_gta/1.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/ppg_gta/1.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/cota_gta/1.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/proposed_gta/1.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody>
-</table>
-
-<p>&nbsp;</p>
-<p><Strong>Text Content:</Strong> "My son," said his mamma, "just stop and think how badly you would feel, if you really couldn't see Percy."</p>
-<table>
-<tbody>
-	<tr>
-	<th>Source Speech(237)</th>
-	<th>Target Speech(p313)</th>
-	</tr>
-	<tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/source/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/target/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	</tr>
-</tbody>
-</table>
-	  <table>
-	  <tbody>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-        <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/mello_gta/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/ppg_gta/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/cota_gta/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/proposed_gta/2.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody>
-</table>
-
-<p>&nbsp;</p>
-<p><Strong>Text Content:</Strong> "Magic must be a very interesting study," said Ojo. </p>
-<table>
-<tbody>
-	<tr>
-	<th>Source Speech(1284)</th>
-	<th>Target Speech(p360)</th>
-	</tr>
-	<tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/source/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/target/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	</tr>
-</tbody>
-</table>
-	  <table>
-	  <tbody>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-        <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/mello_gta/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/ppg_gta/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/cota_gta/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/proposed_gta/3.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody>
-</table>
-
-<p>&nbsp;</p>
-<p><Strong>Text Content:</Strong> Soon another fire sparkled and snapped on the hearth, and there were songs and poems and choruses and Osh Popham's fiddle, to say nothing of the supreme event of the evening, his rendition of "Fly like a youthful hart or roe, over the hills where spices grow," to Mother Carey's accompaniment. </p>
-<table>
-<tbody>
-	<tr>
-	<th>Source Speech(4992)</th>
-	<th>Target Speech(p236)</th>
-	</tr>
-	<tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/source/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/target/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	</tr>
-</tbody>
-</table>
-	  <table>
-	  <tbody>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-        <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/mello_gta/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/ppg_gta/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/cota_gta/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/proposed_gta/4.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody>
-</table>
-
-<p>&nbsp;</p>
-<p><Strong>Text Content:</Strong> This is my schooling, major; and if one neglects the book, there is little chance of learning from the open land of Providence. </p>
-<table>
-<tbody>
-	<tr>
-	<th>Source Speech(1320)</th>
-	<th>Target Speech(p273)</th>
-	</tr>
-	<tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/source/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/target/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	</tr>
-</tbody>
-</table>
-	  <table>
-	  <tbody>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-        <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/mello_gta/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/ppg_gta/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/cota_gta/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/proposed_gta/5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody>
-</table>
-
-<p>&nbsp;</p>
-<p><Strong>Text Content:</Strong> She makes effort after effort, trembling with eagerness, and when she fails to reproduce what she sees, she works herself into a frenzy of grief and disappointment." </p>
-<table>
-<tbody>
-	<tr>
-	<th>Source Speech(4992)</th>
-	<th>Target Speech(p271)</th>
-	</tr>
-	<tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/source/6.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/target/6.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	</tr>
-</tbody>
-</table>
-	  <table>
-	  <tbody>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-        <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/mello_gta/6.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/ppg_gta/6.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/cota_gta/6.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/proposed_gta/6.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody>
-</table>
-
-<p>&nbsp;</p>
-<p><Strong>Text Content:</Strong> I shall return to the consideration of familiarity shortly. </p>
-<table>
-<tbody>
-	<tr>
-	<th>Source Speech(8230)</th>
-	<th>Target Speech(p360)</th>
-	</tr>
-	<tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/source/7.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/target/7.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	</tr>
-</tbody>
-</table>
-	  <table>
-	  <tbody>
-	  <tr>
-        <th>Mellotron-VC</th>
-        <th>PPG-VC</th>
-        <th>Cotatron-VC</th>
-        <th> <span style="color:red;"> Assem-VC </span> </th>
-	  </tr>
-	  <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/mello_gta/7.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/ppg_gta/7.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/cota_gta/7.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/any2many/proposed_gta/7.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-	  </tr>
-	  </tbody>
-</table>
-<p>&nbsp;</p>
+<a name="av"><h2>2. Demo with the Author's Singing Voice</h2></a>
 <hr>
-<a name="bonus"><h2>3. Bonus (curated)</h2></a>
-<p>
-  We show some entertaining conversion results from the speech of celebrities.
-</p>
-
-<div>
-	<h3>Steve Jobs' 2005 Stanford Commencement Address</h3>
-	</table>
-        <table>
-			<tr>
-			<th><p>Source speech</p></th>
-			<th><p>Target speech(p300)</p></th>
-            <th><p>Assem-VC</p></th>
-          </tr>
-			<tr>
-            <td colspan="3" align="center">"Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma - which is living with the results of other people's thinking. Don't let the noise of other's opinions drown out your own inner voice. And most important, have the courage to follow your heart and intuition. They somehow already know what you truly want to become. Everything else is secondary."</td>
-          </tr>
-			<tr>
-				<td colspan="3" align="center"><a href="https://www.youtube.com/watch?v=UF8uR6Z6KLc#t=12m30s">Youtube Link</a></td>
-          </tr>
-          <tr>
-            <td align="center"><audio controls><source src="./bonus/respect.wav"></audio></td>
-			<td align="center"><audio controls><source src="./bonus/p300.wav"></audio></td>
-            <td align="center"><audio controls><source src="./bonus/jobs_converted.wav"></audio></td>
-          </tr>
-	</table>
-
-	<h3>EA Sports</h3>
-	</table>
-        <table>
-			<tr>
-			<th><p>Source speech</p></th>
-			<th><p>Target speech(p244)</p></th>
-            <th><p>Assem-VC</p></th>
-          </tr>
-			<tr>
-            <td colspan="3" align="center">"E A Sports. It's in the game."</td>
-          </tr>
-			<tr>
-				<td colspan="3" align="center"><a href="https://www.youtube.com/watch?v=RxiS93eDcnk&t=29s">Youtube Link</a></td>
-          </tr>
-          <tr>
-            <td align="center"><audio controls><source src="./bonus/EASPORTS.wav"></audio></td>
-			<td align="center"><audio controls><source src="./bonus/p244.wav"></audio></td>
-            <td align="center"><audio controls><source src="./bonus/EASPORTS_converted.wav"></audio></td>
-          </tr>
-	</table>
-
-	<h3>Korean Memes</h3>
-    <p>Korean Assem-VC model was trained with our proprietary multi-speaker Korean TTS dataset.</p>
-	<p><Strong>Target speaker:</Strong> <a href="https://www.kaggle.com/bryanpark/korean-single-speaker-speech-dataset">KSS (Korean Single Speaker Dataset)</a></p>
-
-	<table>
-	<tr><td>
-		<audio controls><source src="./bonus/kss.wav" type="audio/mpeg">
-				Your browser does not support the audio element.</audio>
-	</td></tr>
-	</table>
-        <table>
-          <tr>
-			<th><p>Source speech</p></th>
-            <th><p>Assem-VC</p></th>
-          </tr>
-			<tr>
-            <td colspan="2" align="center">"너 때문에 흥이 다 깨져버렸으니까, 책임져."</td>
-          </tr>
-			<tr>
-				<td colspan="2" align="center"><a href="https://www.youtube.com/watch?v=8rVD5aaeGEo#t=24s">Youtube Link</a></td>
-          </tr>
-          <tr>
-            <td><audio controls><source src="./bonus/greece.wav"></audio></td>
-            <td><audio controls><source src="./bonus/greece_kss.wav"></audio></td>
-          </tr>
-          <tr>
-            <td colspan="2" align="center">"마포대굔 무너졌냐 이XX야?"</td>
-          </tr>
-			<tr>
-				<td colspan="2" align="center"><a href="https://www.youtube.com/watch?v=0FJmSjURfaQ#t=33s">Youtube Link</a></td>
-          </tr>
-          <tr>
-            <td><audio controls><source src="./bonus/mapo.wav"></audio></td>
-            <td><audio controls><source src="./bonus/mapo_kss.wav"></audio></td>
-          </tr>
-		  <tr>
-            <td colspan="2" align="center">"무야호"</td>
-          </tr>
-			<tr>
-				<td colspan="2" align="center"><a href="https://www.youtube.com/watch?v=ePVF4CsQSjk#t=14s">Youtube Link</a></td>
-          </tr>
-          <tr>
-            <td><audio controls><source src="./bonus/muyaho.wav"></audio></td>
-            <td><audio controls><source src="./bonus/muyaho_kss.wav"></audio></td>
-          </tr>
-		</table>
-</div>
-
 </body></html>
