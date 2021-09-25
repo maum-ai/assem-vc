@@ -6,7 +6,7 @@
 	<p><b>Paper:</b> <a href="https://arxiv.org/abs/21TBD">arXiv:21TBD</a></p>
     <p><b>Repository:</b> <a href="https://github.com/mindslab-ai/assem-vc">mindslab-ai/assem-vc @ GitHub<iframe src="https://ghbtns.com/github-btn.html?user=mindslab-ai&repo=assem-vc&type=star&count=true" frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe></a>
     <p><strong>Authors: </strong>Kang-wook Kim, Junhyeok Lee @<a href="https://maum.ai">MINDsLab Inc.</a>, SNU</p>
-	<p><strong>Abstract: </strong>We propose a singing decomposition system that encodes time-aligned linguistic content, pitch, and source speaker identity via Assem-VC. With decomposed speaker independent information and target speaker's embedding, we could synthesize singing voice of target speaker.</p>
+	<p><strong>Abstract: </strong>We propose a singing decomposition system that encodes time-aligned linguistic content, pitch, and source speaker identity via Assem-VC. With decomposed speaker-independent information and the target speaker's embedding, we could synthesize the singing voice of the target speaker. In conclusion, we made a perfectly synced duet with the user's singing voice and the target singer's converted singing voice.</p>
 <hr>
 
 <p class="toc_title"><strong>Contents</strong></p>
@@ -15,19 +15,21 @@
       <li><a href="#rec">Reconstruction</a></li>
       <li><a href="#cl">Controllable Attributes</a></li>
       <ol>
-        <li><a href="#cl">Lyric Control</a></li>
-        <li><a href="#cp">Pitch Control</a></li>
-        <li><a href="#cr">Rhythm Control</a></li>
-        <li><a href="#cs">Speaker Identity Control</a></li>
+        <li><a href="#cl">Control Lyrics</a></li>
+		<li><a href="#cr">Control Rhythm</a></li>
+        <li><a href="#cp">Control Pitch</a></li>
+        <li><a href="#cs">Control Speaker Identity</a></li>
       </ol>
-      <li><a href="#av">Demo with the Author's Singing Voice</a></li>
+      <li><a href="#av">Demo with the User's Singing Voice</a></li>
+	  <ol>
+        <li><a href="#ava">Demo with the Author's Singing Voice</a></li>
+		<li><a href="#ava">Further Examples of Duet</a></li>
     </ol>
 	</div>
 
 <hr>
 
 <a name="rec"><h2>0. Reconstruction</h2></a>
-<p> <Strong>Text Content:</Strong>{IH T S} {F L IY S} {W AA Z} {W AY T} {AE Z} {S N OW}.</p>
 
 <table>
 <tbody>
@@ -86,9 +88,9 @@
 <hr>
 <a name="cl"><h2>1. Controllable Attributes</h2></a>
 
-<a name="cl"><h3>1.1. Control Lyric</h3></a>
+<a name="cl"><h3>1.1. Control Lyrics</h3></a>
 
-<p> <Strong>Text Content:</Strong> The monkey stopped to scratch his nose.</p>
+<p> <Strong>Text Content:</Strong> {OW} {D IH R} {W AH T} {K AE N} {DH AH} {M AE T ER} {B IY}.</p>
 
 <table>
 <tbody>
@@ -98,7 +100,7 @@
 	<tr>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/lyric/ref.wav" type="audio/mpeg">
+				  <source src="./wavs/lyric/text_edition/ref.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
@@ -110,33 +112,33 @@
 <table>
 <tbody>
 	<tr>
-	<th>The monkey stopped to scratch his <span style="color:red">head</span>&nbsp;</th>
-    <th>The monkey <span style="color:red">tried to describing himself</span>&nbsp;</th>
-    <th><span style="color:red">Eh Eh, Eh Eh, Eh Eh Eh Eh Eh</span></th>
-    <th><span style="color:red">Ow Ow, Ow Ow, Ow Ow Ow Ow Ow</span></th>
+	<th><span style="color:red">{UH} {DH EH R} {M AW S}</span> {K AE N} <br><span style="color:red">{N AA} {B AA DH ER} {M IY}</span>.</th>
+    <th><span style="color:red">{AH} {AH AH AH} {AH AH AH} {AH AH<br>AH} {AH AH} {AH AH AH AH} {AH AH}</span>.&nbsp;</th>
+    <th><span style="color:red">{ER} {ER ER ER} {ER ER ER} {ER ER ER} <br>{ER ER} {ER ER ER ER} {ER ER}</span>.&nbsp;</th>
+    <th><span style="color:red">{IY} {IY IY IY} {IY IY IY} {IY IY IY} {IY IY}<br>{IY IY IY IY} {IY IY}</span>.&nbsp;</th>
 	</tr>
 	<tr>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/lyric/1.wav" type="audio/mpeg">
+				  <source src="./wavs/lyric/text_edition/mouse.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/lyric/2.wav" type="audio/mpeg">
+				  <source src="./wavs/lyric/text_edition/ah.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/lyric/3.wav" type="audio/mpeg">
+				  <source src="./wavs/lyric/text_edition/er.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/lyric/4.wav" type="audio/mpeg">
+				  <source src="./wavs/lyric/text_edition/iy.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
@@ -145,31 +147,160 @@
 </table>
                                    
 <h4>1.1.2 Text Deletion</h4></a>
+<p>It is able to delete desired phonemes by replacing them with blank tokens and the corresponding pitches with 0.</p>
 <table>
 <tbody>
 	<tr>
-        <th>The monkey stopped <span style="color:red"><del>to</del></span> scratch his head &nbsp;</th>
-        <th>The monkey <span style="color:red"><del>stopped</del></span> to <span style="color:red"><del>scratch</del></span> his <span style="color:red"><del>head</del></span>&nbsp;</th>
+        <th>{OW} {D IH R} <span style="color:red"><del>{W AH T}</del></span> {K AE N} <br>{DH AH} {M AE T ER} {B IY}.</th>
+        <th><span style="color:red"><del>{OW}</del></span> {D IH R} {W AH T} {K AE N} <br><span style="color:red"><del>{DH AH}</del></span> {M AE T ER} <span style="color:red"><del>{B IY}</del></span>.</th>
 	</tr>
 	<tr>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/lyric/5.wav" type="audio/mpeg">
+				  <source src="./wavs/lyric/text_deletion/delete_what.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/lyric/6.wav" type="audio/mpeg">
+				  <source src="./wavs/lyric/text_deletion/delete_matter.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
 	</tr>
 </tbody>
 </table>
+<p>Replacing phonemes with blank tokens without changing the pitches generates voice as follows.</p>
+<table>
+	<tbody>
+		<tr>
+		<th><span style="color:red">{ } { } { } { } { } { } { }</span>.</th>
+		</tr>
+		<tr>
+			<th>
+					<audio controls="">
+					  <source src="./wavs/lyric/text_edition/blank.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+			</th>
+		</tr>
+</tbody>
+</table>
  
-<a name="cp"><h3>1.2. Control Pitch</h3></a>
-<h4>1.2.1 Pitch Shift</h4></a>
+<a name="cr"><h3>1.2. Control Rhythm</h3></a>
+<p> <Strong>Text Content:</Strong> {IH T S} {F L IY S} {W AA Z} {W AY T} {AE Z} {S N OW}. </p>
+
+<table>
+<tbody>
+	<tr>
+	<th>Reference</th>
+	<th></th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/1/ref.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th></th>
+	</tr>
+    <tr>
+		<th>{IH T S} {F L IY S} {W AA Z} <br>
+		{W AY T} {AE Z} {S N <span style="color:red">OW</span>}. <span style="color:red">&times; 2.5</span></th>
+        <th>{IH T S} {F L IY S} {W AA Z} <br>
+        {W AY T} {AE Z} {S N <span style="color:red">OW</span>}. <span style="color:red">&times; 0.5</span></th>
+        <th>{IH T S} {F L IY S} {W AA Z} <br>
+        {W AY T} {AE Z} {<span style="color:red">S</span> N OW}. <span style="color:red">&times; 5.</span></th>
+        <th>{IH T S} {F L IY S} {W AA Z} <br>
+        {W AY T} {<span style="color:red">AE</span> Z} {S N OW}. <span style="color:red">&times; 5.</span></th>
+    </tr>
+    <tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/1/ow_2.5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+        <th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/1/ow_0.5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+        <th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/1/s_5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+        <th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/1/ae_5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+	</tr>
+</tbody>
+</table>
+<br>
+<p> <Strong>Text Content:</Strong> {HH IY} {P R AA M IY S T} {T UW} {B R IH NG} {M IY} {AH} {B AH N CH} {AH V} {R EH D} {R OW Z IH Z}. </p>
+
+<table>
+<tbody>
+	<tr>
+	<th>Reference</th>
+	<th></th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/2/ref.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th></th>
+	</tr>
+    <tr>
+        <th><span style="color:red">ALL</span> <span style="color:red">&times; 0.6</span></th>
+		<th><span style="color:red">ALL</span> <span style="color:red">&times; 1.7</span></th>
+        <th>{HH IY} {P R AA M IY S T}<br>
+			{T UW}<span style="color:red">BLANK</span>{B R IH NG}... <span style="color:red">&times; 10.</span></th>
+		<th>{HH IY} {P R AA M IY S T} {T UW}<br>
+			{B R IH <span style="color:red">NG</span>} {M IY} {AH} ... <span style="color:red">&times; 10.</span></th>
+    </tr>
+    <tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/2/all_0.6.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th>
+			<audio controls="">
+			  <source src="./wavs/rhythm/2/all_1.7.wav" type="audio/mpeg">
+			Your browser does not support the audio element.
+			</audio>
+		</th>
+        <th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/2/blank_10.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+        <th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/2/ng_10.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+</tbody>
+</table>
+
+<a name="cp"><h3>1.3. Control Pitch</h3></a>
+<h4>1.3.1 Pitch Shift</h4></a>
 <table>
 <tbody>
 	<tr>
@@ -298,11 +429,14 @@
 </tbody>
 </table>
 
-<h4>1.2.2 Pitch Deletion</h4></a>
+<h4>1.3.2 Pitch Deletion</h4></a>
+<p></p>Replacing pitches with 0 without changing the phonemes generates voice as follows.</p>
+
+<p> <Strong>Text Content:</Strong>{OW} {D IH R} {W AH T} {K AE N} {DH AH} {M AE T ER} {B IY}.</p>
 <table>
 <tbody>
 	<tr>
-        <th>{OW} {D IH R} {W AH T} {K AE N} {DH AH} {M AE T ER} {B IY}.</th>
+        <th>Reference</th>
 	</tr>
 	<tr>
 		<th>
@@ -319,7 +453,7 @@
 <table>
 <tbody>
 	<tr>
-        <th>{OW} {D IH R} {W AH T}<span style="color:red"><del>{K AE N} {DH AH} {M AE T ER} {B IY}</del></span>.</th>
+        <th>{OW} {D IH R} {W AH T} <span style="color:red"><del>{K AE N} <br>{DH AH} {M AE T ER} {B IY}</del></span>.</th>
 	</tr>
 	<tr>
 		<th>
@@ -333,67 +467,249 @@
 </tbody>
 </table>
                                   
-
-<a name="cr"><h3>1.3. Control Rhythm</h3></a>
-<p> <Strong>Text Content:</Strong> {IH T S} {F L IY S} {W AA Z} {W AY T} {AE Z} {S N OW}. </p>
+<a name="cs"><h3>1.4. Control Speaker Identity</h3></a>
+<h4>1.4.1 CSD to Female</h4></a>
+<p> <Strong>Text Content:</Strong> {IH T S} {F L IY S} {W AA Z} {W AY T} {AE Z} {S N OW}.</p>
 
 <table>
 <tbody>
 	<tr>
-	<th>Reference</th>
-	<th></th>
+	<th>Reference: <i>CSD</i></th>
 	</tr>
 	<tr>
 		<th>
 				<audio controls="">
-				  <source src="./wavs/rhythm/ref.wav" type="audio/mpeg">
+				  <source src="./wavs/speaker/CSD_to_female/spk_trans_ref1.wav" type="audio/mpeg">
 				Your browser does not support the audio element.
 				</audio>
 		</th>
-		<th></th>
-	</tr>
-    <tr>
-        <th>{IH T S} {F L IY S} {W AA Z} <br>
-        {W AY T} {AE Z} {S N <span style="color:red">OW</span>}. <span style="color:red">&times; 0.5</span></th>
-        <th>{IH T S} {F L IY S} {W AA Z} <br>
-        {W AY T} {AE Z} {S N <span style="color:red">OW</span>}. <span style="color:red">&times; 2.5</span></th>
-        <th>{IH T S} {F L IY S} {W AA Z} <br>
-        {W AY T} {AE Z} {<span style="color:red">S</span> N OW}. <span style="color:red">&times; 5.</span></th>
-        <th>{IH T S} {F L IY S} {W AA Z} <br>
-        {W AY T} {<span style="color:red">AE</span> Z} {S N OW}. <span style="color:red">&times; 5.</span></th>
-    </tr>
-    <tr>
-		<th>
-				<audio controls="">
-				  <source src="./wavs/rhythm/ow_0.5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-        <th>
-				<audio controls="">
-				  <source src="./wavs/rhythm/ow_2.5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-        <th>
-				<audio controls="">
-				  <source src="./wavs/rhythm/s_5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-        <th>
-				<audio controls="">
-				  <source src="./wavs/rhythm/ae_5.wav" type="audio/mpeg">
-				Your browser does not support the audio element.
-				</audio>
-		</th>
-
 	</tr>
 </tbody>
 </table>
-<a name="cs"><h3>1.4. Speaker Identity Control</h3></a>
+<table>
+	<tbody>
+		<tr>
+		<th>Target: <i>NJAT</i></th>
+		<th>Target: <i>PMAR</i></th>
+		</tr>
+		<tr>
+			<th>
+				<audio controls="">
+					<source src="./wavs/speaker/CSD_to_female/target_NJAT.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+			</th>
+			<th>
+				<audio controls="">
+					<source src="./wavs/speaker/CSD_to_female/target_PMAR.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+			</th>
+		</tr>
+		<tr>
+			<th>Converted Result: <i>NJAT</i></th>
+			<th>Converted Result: <i>PMAR</i></th>
+			</tr>
+			<tr>
+				<th>
+					<audio controls="">
+						<source src="./wavs/speaker/CSD_to_female/spk_trans_NJAT.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+				<th>
+					<audio controls="">
+						<source src="./wavs/speaker/CSD_to_female/spk_trans_PMAR.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+			</tr>
+	</tbody>
+</table>
+
+<h4>1.4.2 CSD to Male</h4></a>
+
+<p>The pitches are multiplied by 1/2 to match the pitch range of the male target speakers.</p>
+
+<p> <Strong>Text Content:</Strong> {HH IY} {P R AA M IY S T} {T UW} {B R IH NG} {M IY} {AH} {B AH N CH} {AH V} {R EH D} {R OW Z IH Z}.</p>
+
+<table>
+<tbody>
+	<tr>
+	<th>Reference: <i>CSD</i></th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/speaker/CSD_to_male/spk_trans_ref2.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+</tbody>
+</table>
+<table>
+	<tbody>
+		<tr>
+		<th>Target: <i>JTAN</i></th>
+		<th>Target: <i>KENN</i></th>
+		</tr>
+		<tr>
+			<th>
+				<audio controls="">
+					<source src="./wavs/speaker/CSD_to_male/target_JTAN.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+			</th>
+			<th>
+				<audio controls="">
+					<source src="./wavs/speaker/CSD_to_male/target_KENN.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+			</th>
+		</tr>
+		<tr>
+			<th>Converted Result: <i>JTAN</i></th>
+			<th>Converted Result: <i>KENN</i></th>
+			</tr>
+			<tr>
+				<th>
+					<audio controls="">
+						<source src="./wavs/speaker/CSD_to_male/spk_trans_JTAN.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+				<th>
+					<audio controls="">
+						<source src="./wavs/speaker/CSD_to_male/spk_trans_KENN.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+			</tr>
+	</tbody>
+</table>
 
 <hr>
-<a name="av"><h2>2. Demo with the Author's Singing Voice</h2></a>
+<a name="av"><h2>2. Demo with the User's Singing Voice</h2></a>
+<a name="ava"><h3>2.4.1 Demo with the Author's Singing Voice</h3></a>
+<p> <Strong>Text Content:</Strong>Do you hear the people sing, singing the song of angry man</p>
+<table>
+	<tbody>
+		<tr>
+		<th>Reference: <i>Author</i></th>
+		<th>Target: <i>CSD</i></th>
+		</tr>
+		<tr>
+			<th>
+					<audio controls="">
+					  <source src="./wavs/user/miserables/author_miserable.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/miserables/target_CSD.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		</tr>
+			<tr>
+			<th><i>CSD:</i> +5 keys</th>
+			<th><i>CSD:</i> +7 keys</th>
+			</tr>
+			<tr>
+				<th>
+					<audio controls="">
+						<source src="./wavs/user/miserables/CSD_miserable+5.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+				<th>
+					<audio controls="">
+						<source src="./wavs/user/miserables/CSD_miserable+7.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+			</tr>
+			<tr>
+				<th>Combined Result: <i>Author</i> & <i>CSD+5</i></th>
+				<th>Combined Result: <i>Author</i> & <i>CSD+7</i></th>
+				</tr>
+				<tr>
+					<th>
+						<audio controls="">
+							<source src="./wavs/user/miserables/author+CSD_miserable+5.wav" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					</th>
+					<th>
+						<audio controls="">
+							<source src="./wavs/user/miserables/author+CSD_miserable+7.wav" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					</th>
+				</tr>
+	</tbody>
+</table>
+<p> <Strong>Text Content:</Strong>City of stars, are you shining just for me</p>
+<table>
+	<tbody>
+		<tr>
+		<th>Reference: <i>Author</i></th>
+		<th>Target: <i>MPOL</i></th>
+		</tr>
+		<tr>
+			<th>
+					<audio controls="">
+					  <source src="./wavs/user/city_of_stars/author_city2.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/city_of_stars/target_MPOL.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		</tr>
+			<tr>
+			<th><i>MPOL:</i> +5 keys</th>
+			<th><i>MPOL:</i> +7 keys</th>
+			</tr>
+			<tr>
+				<th>
+					<audio controls="">
+						<source src="./wavs/user/city_of_stars/MPOL_city2+5.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+				<th>
+					<audio controls="">
+						<source src="./wavs/user/city_of_stars/MPOL_city2+7.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+			</tr>
+			<tr>
+				<th>Combined Result: <i>Author</i> & <i>MPOL+5</i></th>
+				<th>Combined Result: <i>Author</i> & <i>MPOL+7</i></th>
+				</tr>
+				<tr>
+					<th>
+						<audio controls="">
+							<source src="./wavs/user/city_of_stars/author+MPOL_city2+5.wav" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					</th>
+					<th>
+						<audio controls="">
+							<source src="./wavs/user/city_of_stars/author+MPOL_city2+7.wav" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					</th>
+				</tr>
+	</tbody>
+</table>
+<a name="avf"><h3>2.4.1 Further Examples of Duet</h3></a>
 <hr>
 </body></html>
