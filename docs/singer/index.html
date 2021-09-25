@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Assem-Singer Demo</title>
+	</head>
+	<body><h2>Audio Samples from "Controllable and Interpretable Singing Voice Decomposition via Assem-VC"</h2>
+	<p><b>Paper:</b> <a href="https://arxiv.org/abs/21TBD">arXiv:21TBD</a></p>
+    <p><b>Repository:</b> <a href="https://github.com/mindslab-ai/assem-vc">mindslab-ai/assem-vc @ GitHub<iframe src="https://ghbtns.com/github-btn.html?user=mindslab-ai&repo=assem-vc&type=star&count=true" frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe></a>
+    <p><strong>Authors: </strong>Kang-wook Kim, Junhyeok Lee @<a href="https://maum.ai">MINDsLab Inc.</a>, SNU</p>
+	<p><strong>Abstract: </strong>We propose a singing decomposition system that encodes time-aligned linguistic content, pitch, and source speaker identity via Assem-VC. With decomposed speaker independent information and target speaker's embedding, we could synthesize singing voice of target speaker.</p>
+<hr>
+
+<p class="toc_title"><strong>Contents</strong></p>
+    <div id="toc_container">
+    <ol start="0">
+      <li><a href="#rec">Reconstruction</a></li>
+      <li><a href="#cl">Controllable Attributes</a></li>
+      <ol>
+        <li><a href="#cl">Lyric Control</a></li>
+        <li><a href="#cp">Pitch Control</a></li>
+        <li><a href="#cr">Rhythm Control</a></li>
+        <li><a href="#cs">Speaker Identity Control</a></li>
+      </ol>
+      <li><a href="#av">Demo with the Author's Singing Voice</a></li>
+    </ol>
+	</div>
+
+<hr>
+
+<a name="rec"><h2>0. Reconstruction</h2></a>
+<p> <Strong>Text Content:</Strong>{IH T S} {F L IY S} {W AA Z} {W AY T} {AE Z} {S N OW}.</p>
+
+<table>
+<tbody>
+	<tr>
+	<th>Reference 1</th>
+	<th>Reference 2</th>
+	<th>Reference 3</th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/reconstruct/ref1.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/reconstruct/ref2.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/reconstruct/ref3.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+    </tr>
+    <tr>
+	<th>Reconstruction 1</th>
+	<th>Reconstruction 2</th>
+	<th>Reconstruction 3</th>
+    <tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/reconstruct/recon1.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+        </th>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/reconstruct/recon2.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+        </th>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/reconstruct/recon3.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+        </th>
+	</tr>
+</tbody>
+</table>
+
+<hr>
+<a name="cl"><h2>1. Controllable Attributes</h2></a>
+
+<a name="cl"><h3>1.1. Control Lyric</h3></a>
+
+<p> <Strong>Text Content:</Strong> The monkey stopped to scratch his nose.</p>
+
+<table>
+<tbody>
+	<tr>
+	<th>Reference</th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/lyric/ref.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+    
+</tbody>
+</table>
+<h4>1.1.1 Text Edition</h4></a>
+<table>
+<tbody>
+	<tr>
+	<th>The monkey stopped to scratch his <span style="color:red">head</span>&nbsp;</th>
+    <th>The monkey <span style="color:red">tried to describing himself</span>&nbsp;</th>
+    <th><span style="color:red">Eh Eh, Eh Eh, Eh Eh Eh Eh Eh</span></th>
+    <th><span style="color:red">Ow Ow, Ow Ow, Ow Ow Ow Ow Ow</span></th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/lyric/1.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/lyric/2.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/lyric/3.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/lyric/4.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+</tbody>
+</table>
+                                   
+<h4>1.1.2 Text Deletion</h4></a>
+<table>
+<tbody>
+	<tr>
+        <th>The monkey stopped <span style="color:red"><del>to</del></span> scratch his head &nbsp;</th>
+        <th>The monkey <span style="color:red"><del>stopped</del></span> to <span style="color:red"><del>scratch</del></span> his <span style="color:red"><del>head</del></span>&nbsp;</th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/lyric/5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/lyric/6.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+</tbody>
+</table>
+ 
+<a name="cp"><h3>1.2. Control Pitch</h3></a>
+<h4>1.2.1 Pitch Shift</h4></a>
+<table>
+<tbody>
+	<tr>
+	<th>Reference</th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/ref.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+    
+</tbody>
+</table>
+
+ 
+<table>
+<tbody>
+	<tr>
+	<th>+1</th>
+    <th>+2</th>
+    <th>+3</th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/p1.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/p2.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/p3.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+    <th>+4</th>
+    <th>+5</th>
+    <th>+6</th>
+    <tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/p4.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/p5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/p6.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+	<tr>
+	<th>-1</th>
+    <th>-2</th>
+    <th>-3</th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/m1.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/m2.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/m3.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+    <th>-4</th>
+    <th>-5</th>
+    <th>-6</th>
+    <tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/m4.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/m5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_shift/m6.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+
+</tbody>
+</table>
+
+<h4>1.2.2 Pitch Deletion</h4></a>
+<table>
+<tbody>
+	<tr>
+        <th>{OW} {D IH R} {W AH T} {K AE N} {DH AH} {M AE T ER} {B IY}.</th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_deletion/ref.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+    
+</tbody>
+</table>
+
+<table>
+<tbody>
+	<tr>
+        <th>{OW} {D IH R} {W AH T}<span style="color:red"><del>{K AE N} {DH AH} {M AE T ER} {B IY}</del></span>.</th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/pitch/pitch_deletion/pitch_del.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+	</tr>
+    
+</tbody>
+</table>
+                                  
+
+<a name="cr"><h3>1.3. Control Rhythm</h3></a>
+<p> <Strong>Text Content:</Strong> {IH T S} {F L IY S} {W AA Z} {W AY T} {AE Z} {S N OW}. </p>
+
+<table>
+<tbody>
+	<tr>
+	<th>Reference</th>
+	<th></th>
+	</tr>
+	<tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/ref.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		<th></th>
+	</tr>
+    <tr>
+        <th>{IH T S} {F L IY S} {W AA Z} <br>
+        {W AY T} {AE Z} {S N <span style="color:red">OW</span>}. <span style="color:red">&times; 0.5</span></th>
+        <th>{IH T S} {F L IY S} {W AA Z} <br>
+        {W AY T} {AE Z} {S N <span style="color:red">OW</span>}. <span style="color:red">&times; 2.5</span></th>
+        <th>{IH T S} {F L IY S} {W AA Z} <br>
+        {W AY T} {AE Z} {<span style="color:red">S</span> N OW}. <span style="color:red">&times; 5.</span></th>
+        <th>{IH T S} {F L IY S} {W AA Z} <br>
+        {W AY T} {<span style="color:red">AE</span> Z} {S N OW}. <span style="color:red">&times; 5.</span></th>
+    </tr>
+    <tr>
+		<th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/ow_0.5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+        <th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/ow_2.5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+        <th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/s_5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+        <th>
+				<audio controls="">
+				  <source src="./wavs/rhythm/ae_5.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+
+	</tr>
+</tbody>
+</table>
+<a name="cs"><h3>1.4. Speaker Identity Control</h3></a>
+
+<hr>
+<a name="av"><h2>2. Demo with the Author's Singing Voice</h2></a>
+<hr>
+</body></html>
