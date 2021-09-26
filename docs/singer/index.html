@@ -24,6 +24,8 @@
 	  <ol>
         <li><a href="#ava">Demo with the Author's Singing Voice</a></li>
 		<li><a href="#ava">Further Examples of Duet</a></li>
+		</ol>
+	  <li><a href="#ar">Artifacts of HiFi-GAN</a></li>
     </ol>
 	</div>
 
@@ -507,8 +509,8 @@
 			</th>
 		</tr>
 		<tr>
-			<th>Converted Result: <i>NJAT</i></th>
-			<th>Converted Result: <i>PMAR</i></th>
+			<th><span style="color:red">Converted Result: <i>NJAT</i></span></th>
+			<th><span style="color:red">Converted Result: <i>PMAR</i></span></th>
 			</tr>
 			<tr>
 				<th>
@@ -569,8 +571,8 @@
 			</th>
 		</tr>
 		<tr>
-			<th>Converted Result: <i>JTAN</i></th>
-			<th>Converted Result: <i>KENN</i></th>
+			<th><span style="color:red">Converted Result: <i>JTAN</i></span></th>
+			<th><span style="color:red">Converted Result: <i>KENN</i></span></th>
 			</tr>
 			<tr>
 				<th>
@@ -591,8 +593,133 @@
 
 <hr>
 <a name="av"><h2>2. Demo with the User's Singing Voice</h2></a>
-<a name="ava"><h3>2.4.1 Demo with the Author's Singing Voice</h3></a>
-<p> <Strong>Text Content:</Strong>Do you hear the people sing, singing the song of angry man</p>
+<a name="ava"><h3>2.4.1 Demo with the User's Singing Voice</h3></a>
+<p> <Strong>Text Content:</Strong> Till the end of the time</p>
+<table>
+	<tbody>
+		<tr>
+		<th>Reference: <i>ADIZ</i></th>
+		<th>Target 1: <i>JTAN</i></th>
+		<th>Target 2: <i>KENN</i></th>
+		</tr>
+		<tr>
+			<th>
+				<audio controls="">
+					<source src="./wavs/user/end/ADIZ_end.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/end/target_JTAN.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/end/target_KENN.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		</tr>
+			<tr>
+			<th><span style="color:red">Result: <i>JTAN-7 keys</i></span></th>
+			<th><span style="color:red">Result: <i>KENN-7 keys</i></span></th>
+			</tr>
+			<tr>
+				<th>
+					<audio controls="">
+						<source src="./wavs/user/end/JTAN_end-7.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+				<th>
+					<audio controls="">
+						<source src="./wavs/user/end/KENN_end-7.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+			</tr>
+			<tr>
+				<th>Combined Result: <i>ADIZ</i> & <i>JTAN-7</i></th>
+				<th>Combined Result: <i>ADIZ</i> & <i>KENN-7</i></th>
+				</tr>
+				<tr>
+					<th>
+						<audio controls="">
+							<source src="./wavs/user/end/combined_JTAN-7.wav" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					</th>
+					<th>
+						<audio controls="">
+							<source src="./wavs/user/end/combined_KENN-7.wav" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					</th>
+				</tr>
+	</tbody>
+</table>
+<p> <Strong>Text Content:</Strong> Just a be with you</p>
+<table>
+	<tbody>
+		<tr>
+		<th>Reference: <i>JLEE</i></th>
+		<th>Target: <i>MCUR</i></th>
+		</tr>
+		<tr>
+			<th>
+					<audio controls="">
+					  <source src="./wavs/user/just/JLEE_just.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/just/target_MCUR.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		</tr>
+			<tr>
+			<th><span style="color:red">Result: <i>MCUR+5 keys</i></span></th>
+			<th><span style="color:red">Result: <i>MCUR+7 keys</i></span></th>
+			</tr>
+			<tr>
+				<th>
+					<audio controls="">
+						<source src="./wavs/user/just/MCUR_just+5.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+				<th>
+					<audio controls="">
+						<source src="./wavs/user/just/MCUR_just+7.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</th>
+			</tr>
+			<tr>
+				<th>Combined Result: <i>Author</i> & <i>MPOL+5</i></th>
+				<th>Combined Result: <i>Author</i> & <i>MPOL+7</i></th>
+				</tr>
+				<tr>
+					<th>
+						<audio controls="">
+							<source src="./wavs/user/just/combined_just+5.wav" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					</th>
+					<th>
+						<audio controls="">
+							<source src="./wavs/user/just/combined_just+7.wav" type="audio/mpeg">
+						Your browser does not support the audio element.
+						</audio>
+					</th>
+				</tr>
+	</tbody>
+</table>
+<p> <Strong>Text Content:</Strong> Do you hear the people sing, singing the song of angry man</p>
 <table>
 	<tbody>
 		<tr>
@@ -614,8 +741,8 @@
 		</th>
 		</tr>
 			<tr>
-			<th><i>CSD:</i> +5 keys</th>
-			<th><i>CSD:</i> +7 keys</th>
+			<th><span style="color:red">Result: <i>CSD:+5 keys</i></span></th>
+			<th><span style="color:red">Result: <i>CSD:+7 keys</i></span></th>
 			</tr>
 			<tr>
 				<th>
@@ -651,7 +778,7 @@
 				</tr>
 	</tbody>
 </table>
-<p> <Strong>Text Content:</Strong>City of stars, are you shining just for me</p>
+<p> <Strong>Text Content:</Strong> City of stars, are you shining just for me</p>
 <table>
 	<tbody>
 		<tr>
@@ -673,8 +800,8 @@
 		</th>
 		</tr>
 			<tr>
-			<th><i>MPOL:</i> +5 keys</th>
-			<th><i>MPOL:</i> +7 keys</th>
+			<th><span style="color:red">Result: <i>MPOL+5 keys</i></span></th>
+			<th><span style="color:red">Result: <i>MPOL+7 keys</i></span></th>
 			</tr>
 			<tr>
 				<th>
@@ -710,6 +837,158 @@
 				</tr>
 	</tbody>
 </table>
-<a name="avf"><h3>2.4.1 Further Examples of Duet</h3></a>
+<a name="avf"><h3>2.4.2 Further Examples of Duet</h3></a>
+<p> <Strong>Text Content:</Strong> Lucky I'm with love with my best friend, lucky to have been where I have been.</p>
+<p>We mixed +3 and +4 keys to match the chord of the original song.</p>
+<table>
+	<tbody>
+		<tr>
+		<th>Reference: <i>Author</i></th>
+		<th>Result: <i>CSD+3,4</i></th>
+		<th>Combined: <i>Author & CSD+3,4</i></th>
+		</tr>
+		<tr>
+			<th>
+					<audio controls="">
+					  <source src="./wavs/user/lucky/author_lucky.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/lucky/CSD_lucky.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/lucky/combined_lucky.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		</tr>
+</table>
+<p> <Strong>Text Content:</Strong> There's a calm surrender</p>
+<table>
+	<tbody>
+		<tr>
+		<th>Reference: <i>JLEE</i></th>
+		<th>Result: <i>CSD+7</i></th>
+		<th>Combined: <i>JLEE & CSD+7</i></th>
+		</tr>
+		<tr>
+			<th>
+					<audio controls="">
+					  <source src="./wavs/user/surrender/JLEE_surrender.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/surrender/CSD_surrender+7.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/surrender/combined_surrender.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		</tr>
+</table>
+<p> <Strong>Text Content:</Strong> Lift me up to touch the sky</p>
+<table>
+	<tbody>
+		<tr>
+		<th>Reference: <i>ADIZ</i></th>
+		<th>Result: <i>CSD-7</i></th>
+		<th>Combined: <i>ADIZ & CSD-7</i></th>
+		</tr>
+		<tr>
+			<th>
+					<audio controls="">
+					  <source src="./wavs/user/lift/ADIZ_lift.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/lift/CSD_lift.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/lift/combined_lift.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		</tr>
+</table>
+<p> <Strong>Text Content:</Strong> Show you the best of mine</p>
+<table>
+	<tbody>
+		<tr>
+		<th>Reference: <i>ADIZ</i></th>
+		<th>Result: <i>KENN-7</i></th>
+		<th>Combined: <i>ADIZ & KENN-7</i></th>
+		</tr>
+		<tr>
+			<th>
+					<audio controls="">
+					  <source src="./wavs/user/showthebest/showthebest_ADIZ.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/showthebest/showthebest_KENN-7.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/user/showthebest/combined_showthebest.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		</tr>
+</table>
 <hr>
+<a name="ar"><h2>3. Artifacts of HiFi-GAN</h2></a>
+<p>
+We observe that there are audible artifacts in our model’s synthesized result, and it is also visible
+in spectrogram. These noisy artifacts degrade the quality of the synthesized result of the model. We
+also found that the similar audible artifacts is generated when the singing voice was reconstructed
+by HiFi-GAN. We will resolve this issue in future works.
+</p>
+<table>
+	<tbody>
+		<tr>
+		<th>Reference</th>
+		<th>Reconstruction of HiFi-GAN</th>
+		<th>Reconstruction of our model</th>
+		</tr>
+		<tr>
+			<th>
+					<audio controls="">
+					  <source src="./wavs/artifacts/en029a_split_00.wav" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/artifacts/en029a_split_00_generated.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+			</th>
+			<th>
+				<audio controls="">
+				  <source src="./wavs/artifacts/audio.wav" type="audio/mpeg">
+				Your browser does not support the audio element.
+				</audio>
+		</th>
+		</tr>
+</table>
 </body></html>
