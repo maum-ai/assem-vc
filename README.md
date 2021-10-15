@@ -3,7 +3,7 @@
 ![](./docs/images/overall.png)
 
 **Assem-VC: Realistic Voice Conversion by Assembling Modern Speech Synthesis Techniques**<br>
-Kang-wook Kim, Seung-won Park, Myun-chul Joe @ [MINDsLab Inc.](https://maum.ai/), SNU
+Kang-wook Kim, Seung-won Park, Junhyeok Lee, Myun-chul Joe @ [MINDsLab Inc.](https://maum.ai/), SNU
 
 Paper: https://arxiv.org/abs/2104.00931 <br>
 Audio Samples: https://mindslab-ai.github.io/assem-vc/ <br>
@@ -217,7 +217,7 @@ BSD 3-Clause License.
 ```bibtex
 @article{kim2021assem,
   title={Assem-VC: Realistic Voice Conversion by Assembling Modern Speech Synthesis Techniques},
-  author={Kim, Kang-wook and Park, Seung-won and Joe, Myun-chul},
+  author={Kim, Kang-wook and Park, Seung-won and Lee, Junhyeok and Joe, Myun-chul},
   journal={arXiv preprint arXiv:2104.00931},
   year={2021}
 }
