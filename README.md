@@ -2,19 +2,25 @@
 
 ![](./docs/images/overall.png)
 
-**Assem-VC: Realistic Voice Conversion by Assembling Modern Speech Synthesis Techniques**<br>
+#### **Assem-VC: Realistic Voice Conversion by Assembling Modern Speech Synthesis Techniques**
+
 Kang-wook Kim, Seung-won Park, Junhyeok Lee, Myun-chul Joe @ [MINDsLab Inc.](https://maum.ai/), SNU
 
 Paper: https://arxiv.org/abs/2104.00931 <br>
 Audio Samples: https://mindslab-ai.github.io/assem-vc/ <br>
 
-**Update: Enjoy our pre-trained model with [Google Colab notebook](https://colab.research.google.com/drive/1rj0d2Xfl0s9TmtHSrJt-8J-eVT6eOgS5?usp=sharing)!**
+Update: Enjoy our pre-trained model with [Google Colab notebook](https://colab.research.google.com/drive/1rj0d2Xfl0s9TmtHSrJt-8J-eVT6eOgS5?usp=sharing)!
 
 Abstract: *In this paper, we pose the current state-of-the-art voice conversion (VC) systems as two-encoder-one-decoder models. After comparing these models, we combine the best features and propose Assem-VC, a new state-of-the-art any-to-many non-parallel VC system. This paper also introduces the GTA finetuning in VC, which significantly improves the quality and the speaker similarity of the outputs. Assem-VC outperforms the previous state-of-the-art approaches in both the naturalness and the speaker similarity on the VCTK dataset. As an objective result, the degree of speaker disentanglement of features such as phonetic posteriorgrams (PPG) is also explored. Our investigation indicates that many-to-many VC results are no longer distinct from human speech and similar quality can be achieved with any-to-many models.*
 
 ---
-**Controllable and Interpretable Singing Voice Decomposition via Assem-VC**
+![](./docs/images/singing_overall.png)
+
+#### **Controllable and Interpretable Singing Voice Decomposition via Assem-VC**
+
 Kang-wook Kim, Junhyeok Lee @ [MINDsLab Inc.](https://maum.ai/), SNU
+
+**Accepted to NeurIPS Workshop on ML for Creativity and Design 2021 (Oral)**
 
 Paper: https://arxiv.org/abs/2110.12676 <br>
 Audio Samples: https://mindslab-ai.github.io/assem-vc/singer/ <br>
@@ -233,7 +239,18 @@ BSD 3-Clause License.
 }
 ```
 
-If you have a question or any kind of inquiries, please contact Kang-wook Kim at [kwkim@mindslab.ai](mailto:kwkim@mindslab.ai)
+---
+
+```bibtex
+@article{kim2021controllable,
+  title={Controllable and Interpretable Singing Voice Decomposition via Assem-VC},
+  author={Kim, Kang-wook and Lee, Junhyeok},
+  journal={arXiv preprint arXiv:2110.12676},
+  year={2021}
+}
+```
+
+If you have a question or any kind of inquiries, please contact Kang-wook Kim at [full324@snu.ac.kr](mailto:full324@snu.ac.kr)
 
 
 ## Repository structure
@@ -309,7 +326,9 @@ This implementation uses code from following repositories:
 This README was inspired by:
 - [Tips for Publishing Research Code](https://github.com/paperswithcode/releasing-research-code)
 
-The audio samples on our [webpage](https://mindslab-ai.github.io/assem-vc/) are partially derived from:
+The audio samples on [the demo page of Assem-VC](https://mindslab-ai.github.io/assem-vc/) and [the demo page of Assem-Singer](https://mindslab-ai.github.io/assem-vc/singer/) are partially derived from:
 - [LibriTTS](https://arxiv.org/abs/1904.02882): Dataset for multispeaker TTS, derived from LibriSpeech.
 - [VCTK](https://datashare.ed.ac.uk/handle/10283/2651): 46 hours of English speech from 108 speakers.
 - [KSS](https://www.kaggle.com/bryanpark/korean-single-speaker-speech-dataset): Korean Single Speaker Speech Dataset.
+- [CSD](https://zenodo.org/record/4785016): Children's Song Dataset for Singing Voice Research
+- [NUS-48E](https://smcnus.comp.nus.edu.sg/nus-48e-sung-and-spoken-lyrics-corpus/): NUS-48E Sung and Spoken Lyrics Corpus
