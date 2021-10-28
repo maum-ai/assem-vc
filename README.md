@@ -12,6 +12,16 @@ Audio Samples: https://mindslab-ai.github.io/assem-vc/ <br>
 
 Abstract: *In this paper, we pose the current state-of-the-art voice conversion (VC) systems as two-encoder-one-decoder models. After comparing these models, we combine the best features and propose Assem-VC, a new state-of-the-art any-to-many non-parallel VC system. This paper also introduces the GTA finetuning in VC, which significantly improves the quality and the speaker similarity of the outputs. Assem-VC outperforms the previous state-of-the-art approaches in both the naturalness and the speaker similarity on the VCTK dataset. As an objective result, the degree of speaker disentanglement of features such as phonetic posteriorgrams (PPG) is also explored. Our investigation indicates that many-to-many VC results are no longer distinct from human speech and similar quality can be achieved with any-to-many models.*
 
+---
+**Controllable and Interpretable Singing Voice Decomposition via Assem-VC**
+Kang-wook Kim, Junhyeok Lee @ [MINDsLab Inc.](https://maum.ai/), SNU
+
+Paper: https://arxiv.org/abs/2110.12676 <br>
+Audio Samples: https://mindslab-ai.github.io/assem-vc/singer/ <br>
+
+Abstract: *We propose a singing decomposition system that encodes time-aligned linguistic content, pitch, and source speaker identity via Assem-VC. With decomposed speaker-independent information and the target speaker's embedding, we could synthesize the singing voice of the target speaker. In conclusion, we made a perfectly synced duet with the user's singing voice and the target singer's converted singing voice.*
+
+
 ## Requirements
 
 This repository was tested with following environment:
