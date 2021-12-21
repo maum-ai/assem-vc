@@ -245,7 +245,7 @@ BSD 3-Clause License.
 @article{kim2021controllable,
   title={Controllable and Interpretable Singing Voice Decomposition via Assem-VC},
   author={Kim, Kang-wook and Lee, Junhyeok},
-  journal={arXiv preprint arXiv:2110.12676},
+  journal={NeurIPS 2021 Workshop on Machine Learning for Creativity and Design},
   year={2021}
 }
 ```
