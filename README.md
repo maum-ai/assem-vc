@@ -6,6 +6,8 @@
 
 Kang-wook Kim, Seung-won Park, Junhyeok Lee, Myun-chul Joe @ [MINDsLab Inc.](https://maum.ai/), SNU
 
+**Accepted to IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2022**
+
 Paper: https://arxiv.org/abs/2104.00931 <br>
 Audio Samples: https://mindslab-ai.github.io/assem-vc/ <br>
 
