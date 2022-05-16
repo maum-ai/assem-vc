@@ -233,12 +233,15 @@ BSD 3-Clause License.
 ## Citation & Contact
 
 ```bibtex
-@article{kim2021assem,
-  title={Assem-VC: Realistic Voice Conversion by Assembling Modern Speech Synthesis Techniques},
-  author={Kim, Kang-wook and Park, Seung-won and Lee, Junhyeok and Joe, Myun-chul},
-  journal={arXiv preprint arXiv:2104.00931},
-  year={2021}
-}
+@INPROCEEDINGS{kim2021assem, 
+  title={ASSEM-VC: Realistic Voice Conversion by Assembling Modern Speech Synthesis Techniques},   
+  author={Kim, Kang-Wook and Park, Seung-Won and Lee, Junhyeok and Joe, Myun-Chul},  
+  booktitle={ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},   
+  year={2022},  
+  volume={}, 
+  number={},  
+  pages={6997-7001},  
+  doi={10.1109/ICASSP43922.2022.9746139}}
 ```
 
 ---
